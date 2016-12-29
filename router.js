@@ -1,8 +1,18 @@
+const optfile = require('./modules/optfile');
+
 module.exports = {
 	login(req, res) {
-		res.write('我是login方法');
+		const recall = (data) => {
+			res.write(data);
+			res.end('');
+		};
+		optfile.readfile('./views/login.html', recall);
 	},
 	zhuce(req, res) {
-		res.write('我是注册方法');
+		const recall = (data) => {
+			res.write(data);
+			res.end('');
+		};
+		optfile.readfile('./views/zhuce.html', recall);
 	}
 };
