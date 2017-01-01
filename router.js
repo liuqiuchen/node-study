@@ -11,14 +11,10 @@ const getRecall = (req, res) => {
 
 module.exports = {
 	login(req, res) {
-		optfile.readfile('./views/login.html', getRecall);
+		optfile.readfile('./views/login.html', getRecall(req, res));
 	},
 	zhuce(req, res) {
-		const recall = (data) => {
-			res.write(data);
-			res.end('');
-		};
-		optfile.readfile('./views/zhuce.html', recall);
+		optfile.readfile('./views/zhuce.html', getRecall(req, res));
 	},
 	onewritefile (request, response) {
 		function recall (data) {
@@ -27,8 +23,8 @@ module.exports = {
 		}
 		optfile.writefile('./views/one.txt', '我的写入文件', recall);
 	},
-	showImg (request, response) {
+	showimg (request, response) {
 		response.writeHead(200, {'Content-Type': 'image/jpeg'});
-		optfile.readImg('./imgs/pig.jpg', response);
+		optfile.readImg('./imgs/pic.jpg', response);
 	}
 };
