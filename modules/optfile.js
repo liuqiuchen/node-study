@@ -13,6 +13,7 @@ module.exports = {
 		fs.readFile(path, (err, data) => {
 			if (err) {
 				console.log(err);
+				recall('文件不存在');
 			} else {
 				console.log(data.toString());
 				recall(data);
