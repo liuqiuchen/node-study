@@ -1,0 +1,24 @@
+{
+  "name": "node-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "n10_param.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuqiuchen/node-study.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liuqiuchen/node-study/issues"
+  },
+  "homepage": "https://github.com/liuqiuchen/node-study#readme",
+  "devDependencies": {
+    "async": "^2.1.4",
+    "mysql": "^2.12.0"
+  }
+}

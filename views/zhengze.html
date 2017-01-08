@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<script>
+	var str = 'dgfghd{name}hghf{age}sda{name}';
+	var re = /\{name\}/ig; // *表示匹配前面的子表达式零次或多次，?表示匹配前面的子表达式零次或一次
+	window.onload = function () {
+		if(re.test(str)) {
+			var newStr = str.replace(re, '张三');
+			alert(newStr);
+		} else {
+			alert('没有');
+		}
+
+	};
+</script>
+</body>
+</html>

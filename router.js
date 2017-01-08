@@ -1,5 +1,6 @@
 const optfile = require('./modules/optfile');
 const url = require('url');
+const querystring = require('querystring'); // post需导入
 
 const getRecall = (req, res) => {
 	res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -28,14 +29,23 @@ module.exports = {
 		// 注意异步
 		req.on('end', () => {
 			post = querystring.parse(post);	// 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回
-			console.log('email: ' + post['email'] + '\n');
-			console.log('pwd: ' + post['pwd']);
+			//console.log('email: ' + post['email'] + '\n');
+			//console.log('pwd: ' + post['pwd']);
+			let arr = ['email', 'pwd'];
+			let recall = (data) => {
+				let dataStr = data.toString();
+				for(var i = 0;i < arr.length;i++) {
+					let re = new RegExp('{' + arr[i] + '}', 'g');
+					dataStr = dataStr.replace(re, post[arr[i]]);
+				}
+				res.write(dataStr);
+				res.end('');	// 不写则没有http协议尾
+			};
+			optfile.readfile('./views/login.html', recall);
 		});
-		let data = optfile.readfileSync('./views/login.html');
+		/*let data = optfile.readfileSync('./views/login.html', getRecall(req, res));
 		res.write(data);
-		res.end();
-
-		optfile.readfile('./views/login.html', getRecall(req, res));
+		res.end();*/
 	},
 	zhuce(req, res) {
 		optfile.readfile('./views/zhuce.html', getRecall(req, res));
